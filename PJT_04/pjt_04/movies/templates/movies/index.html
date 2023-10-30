@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>INDEX PAGE</h1>
+  {% if request.user.is_authenticated %}
+    {% comment %} <a href="{% url 'movies:create' %}">[CREATE]</a> {% endcomment %}
+  {% else %}
+    {% comment %} <a href="{% url 'accounts:login' %}">[새 글을 작성하려면 로그인하세요.]</a> {% endcomment %}
+  {% endif %}
+
+
+  <div class="flexbox">
+  {% for movie in movies %}
+    <div class="card">
+      <div class="card-header">
+        <p>{{ movie.title }}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{movie.description}}</p>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'movies:detail' movie.pk %}'">detail</button>
+      </div>
+    </div>
+  
+  {% endfor %}
+</div>
+
+{% comment %} {% for movie in movies %}
+<div class="row">
+  <div class="col-sm-6">
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text">{{movie.description}}</p>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'movies:detail' movie.pk %}'">detail</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text">{{movie.description}}</p>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'movies:detail' movie.pk %}'">detail</button>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+{% comment %} {% endfor %} {% endcomment %}
+{% endblock %}

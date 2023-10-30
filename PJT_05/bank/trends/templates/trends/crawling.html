@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% comment %} text_crawlings {% endcomment %}
+
+{% block content %}
+<h2>크롤링 기초 - 전체 기간 검색 결과</h2>
+
+{% for trend in trends %}
+<p>검색결과: {{ trend.name }} - {{ trend.search_period }} / 검색일자: {{ trend.created_at }} </p>
+<hr>
+{% endfor %}
+{% endblock content %}

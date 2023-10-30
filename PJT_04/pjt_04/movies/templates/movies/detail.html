@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>DETAIL PAGE</h1>
+    <h2>{{ movie.title }}</h2>
+    <h4>{{ movie.description }}</h4>
+    <hr>
+    <form method="post" action="{% url 'movies:delete' movie.pk%}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="button-container">
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'movies:update' movie.pk%}'">UPDATE</button>
+          <button type="submit" class="btn btn-danger" >DELETE</button>
+      </div>
+  </form>
+  <hr>
+  <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'movies:index' %}'">BACK</button>
+  
+{% endblock  %}
